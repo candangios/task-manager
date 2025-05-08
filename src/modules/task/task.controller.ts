@@ -18,7 +18,7 @@ export class TaskController {
   async findOne(@Request() req, @Param('id') id: string) {
     try {
       const resultTask = await this.taskService.findOne(id);
-      if (resultTask.user === req.user.userId) {
+      if (resultTask.user.toString() === req.user.userId) {
         return resultTask
       }
       throw new Error("Not authorized!")
